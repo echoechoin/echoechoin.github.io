@@ -1,6 +1,151 @@
+<!DOCTYPE html>
+<html>
 <head>
-
+	<meta charset="utf-8">
+	<title>应用js对象实现弹跳球</title>
+	<style type="text/css">
+		*{
+			margin: 0px;
+			padding: 0px;
+		}
+		#page{
+			width: 1366px;
+			height: 651px;
+		}
+		#myCanvas{
+			background-color: black;
+		}
+	</style>
 </head>
 <body>
-<h1>hello world!</h1>
-</body>
+	<div id = "page">
+		<h1></h1>
+		<canvas id = "myCanvas" width="1366px" height="648px"></canvas>
+	</div>
+	<script type="text/javascript">
+		var oMyCanvas,oContent ,fWidth,fHeight
+		var ArrBalls = [];
+		playerFlag = 0;
+		var ball = new oBall(fWidth/2,fHeight/2,0,0,"red",10);
+		oMyCanvas = document.getElementById("myCanvas");
+		oContent = oMyCanvas.getContext("2d");
+		fWidth = oMyCanvas.width = document.getElementById("page").offsetWidth;
+		fHeight = oMyCanvas.height = document.getElementById("page").offsetHeight;
+		var playAnimate;
+		oMyCanvas.onmousedown = function(ev){
+			if(playerFlag == 0)
+			{
+				playAnimate = setInterval(loop,10);
+				playerFlag = 1;
+			}	
+		}
+		myCanvas.onmousemove = function(ev){
+			if(playerFlag == 1)
+			{
+				ball.x = ev.layerX;
+				ball.y = ev.layerY;
+			}
+		}
+		function showGameOver(){
+			var GameoverDIV = document.createElement("div");
+			GameoverDIV.innerHTML = "GAME OVER";
+			GameoverDIV.style = "position:absolute;left:600px;top:200px;width:100px;height:100px;background-color:pink;"
+			document.body.appendChild(GameoverDIV);
+		}
+		function isGameOver(){
+			var i = false;
+			for (var j = 0; j <ArrBalls.length; j++) {
+				var distance_x = ball.x - ArrBalls[j].x;
+				var distance_y = ball.y - ArrBalls[j].y;
+				distance = Math.sqrt(distance_x*distance_x+distance_y*distance_y);
+				if(distance < ball.size+ArrBalls[j].size){
+					i = true;
+				}
+			}
+			return i;
+		}
+		//在两个数之间获得一个随机数
+		function random(iMin,iMax){
+			var iNumber = Math.random()*(iMax-iMin+1) + iMin;
+			return iNumber;
+		}
+		//oBall类
+		function oBall(fX,fY,fVelX,fVelY,sColor,fSize){
+			this.x = fX;
+			this.y = fY;
+			this.velocityX = fVelX;
+			this.velocityY = fVelY;
+			this.color = sColor;
+			this.size = fSize;
+			this.count = 0;
+		}
+		//在x y坐标为圆心绘制一个半径为size的圆
+		oBall.prototype.draw = function(){
+			oContent.beginPath();
+			oContent.fillStyle = this.color;
+			oContent.arc(this.x,this.y,this.size,0,2*Math.PI)
+			oContent.fill();
+		}
+		oBall.prototype.upDate = function(){
+			if((this.x+this.size)>fWidth){
+				this.velocityX = -(this.velocityX);
+			}
+			if((this.x-this.size)<=0){
+				this.velocityX = -(this.velocityX);
+			}
+			if((this.y+this.size)>fHeight){
+				this.velocityY = -(this.velocityY);
+			}
+			if((this.y-this.size)<=0){
+				this.velocityY = -(this.velocityY);
+			}
+			this.x = this.x + this.velocityX;
+			this.y = this.y + this.velocityY;
+
+			for (var j = 0; j <ArrBalls.length; j++) {
+				if(!(this == ArrBalls[j])){
+					var distance_x = this.x - ArrBalls[j].x;
+					var distance_y = this.y - ArrBalls[j].y;
+					distance = Math.sqrt(distance_x*distance_x+distance_y*distance_y);
+					if(distance < this.size+ArrBalls[j].size){
+						// this.velocityY = -this.velocityY;
+						// this.velocityX = -this.velocityX;
+						if(this.count == 0){ArrBalls[j].color = this.color = "rgb(" + random(0,255) + "," + random(0,255) + "," + random(0,255) +")";this.count++;}
+						else if(this.count>0&&this.count<50){this.count++;}
+						else{this.count = 0;}				
+					}
+				}
+			}
+		}	
+		function loop(){
+			oContent.fillStyle = "rgba(0,0,0,0.25)";
+			oContent.fillRect(0,0,fWidth,fHeight);
+			while(ArrBalls.length < 25){
+				var fSize = random(10,20);
+				var oMyBall =new oBall(
+					random(0 + fSize,fWidth - fSize),
+		      		random(0 + fSize,fHeight - fSize),
+		      		random(-5,5),
+		    		random(-5,5),
+		      		'rgb(' + random(0,255) + ',' + random(0,255) + ',' + random(0,255) +')',
+		      		fSize);
+				ArrBalls.push(oMyBall)
+			}
+			for(var i = 0;i<ArrBalls.length;i++){
+				ArrBalls[i].draw();
+				ArrBalls[i].upDate();
+			}
+			ball.draw();
+			//requestAnimationFrame(loop);
+			if(isGameOver() == true){
+				playerFlag = -1;
+				oContent.fillStyle = "rgba(0,0,0,0.25)";
+				oContent.fillRect(0,0,fWidth,fHeight);
+				showGameOver();
+				clearInterval(playAnimate);
+				
+			}
+		}
+
+	</script>
+</html>
