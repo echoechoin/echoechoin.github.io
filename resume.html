@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Resume</title>
+  <script src="https://code.iconify.design/3/3.1.0/iconify.min.js"></script>
+  <style>
+/* Backbone CSS for Resume Template 1 */
+
+/* Basic */
+
+#vue-smart-pages-preview {
+  background-color: white;
+  color: black;
+  text-align: left;
+  -moz-hyphens: auto;
+  -ms-hyphens: auto;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+}
+
+#vue-smart-pages-preview p,
+#vue-smart-pages-preview li,
+#vue-smart-pages-preview dl {
+  margin: 0;
+}
+
+/* Headings */
+
+#vue-smart-pages-preview h1,
+#vue-smart-pages-preview h2,
+#vue-smart-pages-preview h3 {
+  font-weight: bold;
+}
+
+#vue-smart-pages-preview h1 {
+  font-size: 2.5em;
+  letter-spacing: 0.1em;
+  text-align: center;
+  margin-bottom: 0.25em;
+}
+
+#vue-smart-pages-preview h2,
+#vue-smart-pages-preview h3 {
+  margin-bottom: 0.25em;
+  margin-top: 1.0em;
+  font-size: 1.2em;
+}
+
+#vue-smart-pages-preview h1,
+#vue-smart-pages-preview h2 {
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+  border-bottom-color: darkgrey;
+}
+
+/* Lists */
+
+#vue-smart-pages-preview ul,
+#vue-smart-pages-preview ol {
+  padding-left: 1.5em;
+  margin: 0.2em 0 1.0em 0;
+}
+
+#vue-smart-pages-preview ul {
+  list-style-type: disc;
+}
+
+#vue-smart-pages-preview ol {
+  list-style-type: decimal;
+}
+
+/* Definition Lists */
+
+#vue-smart-pages-preview dl {
+  display: flex;
+}
+
+#vue-smart-pages-preview dl dt,
+#vue-smart-pages-preview dl dd:not(:last-child) {
+  flex: 1;
+}
+
+/* Tex */
+
+#vue-smart-pages-preview :not(span.katex-display) > span.katex {
+  font-size: 1em !important;
+}
+
+/* SVG & Images */
+
+#vue-smart-pages-preview svg.iconify {
+  vertical-align: -0.2em;
+}
+
+#vue-smart-pages-preview img {
+  max-width: 100%;
+}
+
+/* Header */
+
+#vue-smart-pages-preview .resume-header {
+  text-align: center;
+}
+
+#vue-smart-pages-preview .resume-header h1 {
+  text-align: center;
+  line-height: 1;
+  margin-bottom: 8px;
+}
+
+#vue-smart-pages-preview .resume-header-item:not(.no-separator)::after {
+  content: " | ";
+}
+
+/* Citations */
+
+#vue-smart-pages-preview ul.crossref-list {
+  padding-left: 1.2em;
+}
+
+#vue-smart-pages-preview li.crossref-item p {
+  margin-left: 0.5em;
+}
+
+#vue-smart-pages-preview li.crossref-item::marker {
+  content: attr(data-caption);
+}
+
+#vue-smart-pages-preview sup.crossref-ref {
+  font-size: 100%;
+  top: 0;
+}
+
+/* Dark & print mode */
+
+.dark #vue-smart-pages-preview {
+  background-color: #334155;
+  color: #e5e7eb;
+}
+
+@media print {
+  #vue-smart-pages-preview {
+    background-color: white !important;
+    color: black !important;
+  }
+
+  .dark #vue-smart-pages-preview a {
+    color: black !important;
+  }
+}
+
+    /* Dynamic Styles */
+    body {
+      font-family: Verdana, HKST;
+      font-size: 13px;
+      background-color: #f5f5f5;
+      color: black;
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+    }
+    
+    #vue-smart-pages-preview {
+      background-color: white;
+      width: 793px;
+      max-width: 100%;
+      padding: 0px 47px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      box-sizing: border-box;
+    }
+    
+    :not(.resume-header-item) > a {
+      color: #377BB5;
+    }
+    
+    h1, h2, h3 {
+      color: #377BB5;
+    }
+    
+    h1, h2 {
+      border-bottom-color: #377BB5;
+    }
+    
+    p, li {
+      line-height: 1.30;
+    }
+    
+    h2, h3 {
+      line-height: 1.50;
+    }
+    
+    dl {
+      line-height: 1.35;
+    }
+    
+    h2 {
+      margin-top: 5px;
+    }
+    
+    @media print {
+      body {
+        background-color: white;
+        padding: 0;
+        margin: 0;
+      }
+      
+      #vue-smart-pages-preview {
+        width: 100%;
+        max-width: none;
+        box-shadow: none;
+        margin: 0;
+        padding: 0px 47px;
+      }
+      
+      @page {
+        size: A4;
+        margin: 0;
+      }
+    }
+  
+  </style>
+</head>
+<body>
+  <main id="vue-smart-pages-preview">
+<div class="resume-header"></div><h1>个人简历</h1>
+<h2>About me</h2>
+<ul>
+<li>姓名: xxxx</li>
+<li>教育经历: 西南石油大学 xx工程(2016 - 2020)</li>
+<li>GitHub: <a href="https://github.com/echoechoin" target="_blank" rel="noopener">github.com/echoechoin</a></li>
+</ul>
+<h2>Skills</h2>
+<ul>
+<li>系统与工具：Linux、Git、Docker</li>
+<li>编程语言：C、Python、Shell</li>
+<li>调试工具：GDB、bpftrace</li>
+<li>网络与转发技术：Netfilter、DPDK、VPP、eBPF（XDP/AF-XDP、TC）</li>
+<li>AI辅助开发工具：Claude Code、Cursor、codex</li>
+</ul>
+<h2>Experience</h2>
+<h3>xxxx(xx)xxxx科技股份有限公司</h3>
+<h4>2020-2022：系统与网络相关工作</h4>
+<ul>
+<li>系统维护: 负责系统补丁管理、版本升级及故障日志 dump 等日常运维工作，保障系统稳定运行。</li>
+<li>网络开发：维护基于 Python 的配置下发管理代码，实现网络配置的高效管控。</li>
+<li>资源优化: 负责内存、CPU、irq affinity 等物理资源分配，通过配置化改造减少代码维护成本，适配不同硬件设备。</li>
+<li>通信模块开发: 基于 libevent 实现 IPC 通信模块，保障进程间高效通信。</li>
+<li>日志管理: 实现数据面到控制面的日志留存功能，采用共享内存机制提升日志传输效率。</li>
+</ul>
+<h4>2023 - 至今：转发组件开发</h4>
+<h5>内核模块代码迁移到 VPP</h5>
+<ul>
+<li>完成 Kernel 中 Netfilter hooks 代码到 VPP hooks 的移植，实现转发逻辑的兼容适配。降低内核模块 Coredump 的影响</li>
+</ul>
+<h5>二层</h5>
+<ul>
+<li>支持 VLAN 及 QinQ 协议解析，完善二层网络协议适配能力。</li>
+<li>实现 VPP 与 Suricata 的零拷贝通道，替代原有 pf_ring 实现，大幅提升数据传输效率。</li>
+</ul>
+<h5>三层</h5>
+<ul>
+<li>负责基于三层协议的流表维护，为上层模块提供稳定hook点；保障网络流量转发与管控。</li>
+<li>维护流量统计与流量限速功能，减少后端服务器被恶意 DDOS 导致的崩溃。</li>
+<li>负责 VPP 环境下代理功能的实现与维护，涵盖 NAT、virtio tap ↔ kernel ↔ nginx 链路搭建与优化。</li>
+<li>维护内核层代理功能，基于 tproxy + iptables（适用于二层透明桥）/ TC eBPF Tproxy 实现高效代理转发。</li>
+</ul>
+<h5>四层</h5>
+<ul>
+<li>实现旁路阻断功能，支持 TCP reset、UDP 端口不可达等阻断策略。</li>
+<li>开发有限的 TCP 报文篡改功能，满足特定场景下的报文定制需求。</li>
+<li>实现反测绘功能，通过 UDP / ICMP / TCP 欺骗机制，规避 NMAP 扫描检测。</li>
+</ul>
+<h2>Future Plan</h2>
+<p>针对 Suricata 协议处理场景多、边界案例多导致的 coredump 概率较高的问题，调研并推进 XDP + VPP + Suricata 的内核旁路流量方案，避免 Suricata 段错误后写坏 VPP 共享内存，保障流量正常传输。</p>
+<h2>Open Source Contributions</h2>
+<ul>
+<li>
+<p>基于 AI 辅助编码，参与 util-linux 项目开发：<a href="https://git.kernel.org/pub/scm/utils/util-linux/util-linux.git/log/?qt=author&amp;q=WanBingjiang" target="_blank" rel="noopener">https://git.kernel.org/pub/scm/utils/util-linux/util-linux.git/log/?qt=author&amp;q=WanBingjiang</a></p>
+</li>
+<li>
+<p>VPP、XDP 项目代码提交:</p>
+<ul>
+<li><a href="https://gerrit.fd.io/r/q/author:614699596%2540qq.com" target="_blank" rel="noopener">https://gerrit.fd.io/r/q/author:614699596%2540qq.com</a></li>
+<li><a href="https://github.com/xdp-project/xdp-tutorial/commits?author=echoechoin" target="_blank" rel="noopener">https://github.com/xdp-project/xdp-tutorial/commits?author=echoechoin</a></li>
+</ul>
+</li>
+<li>
+<p>调研与实现 VPP 相关插件，项目地址：<a href="https://github.com/echoechoin/vpp-plugins" target="_blank" rel="noopener">https://github.com/echoechoin/vpp-plugins</a>，支持 CPU 负载模拟、流表追踪、链路状态监控等功能。</p>
+</li>
+</ul>
+
+  </main>
+</body>
+</html>
