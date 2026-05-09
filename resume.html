@@ -18,6 +18,7 @@
   -ms-hyphens: auto;
   -webkit-hyphens: auto;
   hyphens: auto;
+  line-height: 1.3;
 }
 
 #vue-smart-pages-preview p,
@@ -154,7 +155,7 @@
     /* Dynamic Styles */
     body {
       font-family: Verdana, HKST;
-      font-size: 13px;
+      font-size: 14px;
       background-color: #f5f5f5;
       color: black;
       margin: 0;
@@ -167,7 +168,7 @@
       background-color: white;
       width: 793px;
       max-width: 100%;
-      padding: 0px 47px;
+      padding: 66px 56px;
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
       box-sizing: border-box;
     }
@@ -212,7 +213,7 @@
         max-width: none;
         box-shadow: none;
         margin: 0;
-        padding: 0px 47px;
+        padding: 66px 56px;
       }
       
       @page {
@@ -228,68 +229,89 @@
 <div class="resume-header"></div><h1>个人简历</h1>
 <h2>About me</h2>
 <ul>
-<li>姓名: xxxx</li>
-<li>教育经历: 西南石油大学 xx工程(2016 - 2020)</li>
+<li>姓名: xxx</li>
+<li>教育经历: xxxx大学 xx工程(2016 - 2020)</li>
 <li>GitHub: <a href="https://github.com/echoechoin" target="_blank" rel="noopener">github.com/echoechoin</a></li>
+</ul>
+<h2>求职意向</h2>
+<ul>
+<li>意向岗位：网络数据面开发工程师</li>
+<li>期望方向：基于 DPDK / VPP / eBPF 的高性能网络转发面开发</li>
+<li>当前状态：在职</li>
 </ul>
 <h2>Skills</h2>
 <ul>
-<li>系统与工具：Linux、Git、Docker</li>
+<li>网络与转发技术：VPP（主要）、DPDK、Netfilter、eBPF（XDP/AF-XDP、TC）</li>
 <li>编程语言：C、Python、Shell</li>
-<li>调试工具：GDB、bpftrace</li>
-<li>网络与转发技术：Netfilter、DPDK、VPP、eBPF（XDP/AF-XDP、TC）</li>
-<li>AI辅助开发工具：Claude Code、Cursor、codex</li>
+<li>系统与工具：Linux、Git、Docker、GDB、bpftrace</li>
+<li>AI辅助开发工具：Claude Code、Cursor、Codex</li>
 </ul>
-<h2>Experience</h2>
-<h3>xxxx(xx)xxxx科技股份有限公司</h3>
-<h4>2020-2022：系统与网络相关工作</h4>
+<h2>工作经历</h2>
+<h3>xxxxxxxxxx科技股份有限公司（2020 - 至今）</h3>
+<p><strong>岗位：数据面开发工程师</strong></p>
+<p>负责网络安全产品数据面转发组件的设计与开发，核心职责包括：</p>
 <ul>
-<li>系统维护: 负责系统补丁管理、版本升级及故障日志 dump 等日常运维工作，保障系统稳定运行。</li>
-<li>网络开发：维护基于 Python 的配置下发管理代码，实现网络配置的高效管控。</li>
-<li>资源优化: 负责内存、CPU、irq affinity 等物理资源分配，通过配置化改造减少代码维护成本，适配不同硬件设备。</li>
-<li>通信模块开发: 基于 libevent 实现 IPC 通信模块，保障进程间高效通信。</li>
-<li>日志管理: 实现数据面到控制面的日志留存功能，采用共享内存机制提升日志传输效率。</li>
+<li><strong>转发组件开发</strong>：主导将内核 Netfilter 转发逻辑迁移至用户态 VPP，负责 L2-L4 层转发特性的开发与维护，覆盖 VLAN/QinQ 解析、流表管理、流量限速、旁路阻断、反测绘等功能。</li>
+<li><strong>代理转发实现</strong>：维护 VPP 侧与内核侧两套代理方案，涵盖 NAT、tproxy + iptables、TC eBPF tproxy 等技术路线。</li>
+<li><strong>系统维护与调优</strong>：负责系统补丁管理、资源分配（CPU/内存/IRQ affinity）的配置化改造，减少不同硬件平台间的代码维护成本。</li>
 </ul>
-<h4>2023 - 至今：转发组件开发</h4>
-<h5>内核模块代码迁移到 VPP</h5>
+<h2>项目经历</h2>
+<h3>VPP 高性能转发组件开发</h3>
+<p><strong>背景</strong>：公司安全产品原基于内核 Netfilter 框架实现流量转发，内核模块 coredump 会导致整机重启，影响业务连续性。</p>
+<p><strong>目标</strong>：将核心转发逻辑从内核态迁移至用户态 VPP，降低故障爆炸半径，并在此基础上迭代 L2-L4 层转发特性。</p>
+<p><strong>技术方案</strong>：</p>
 <ul>
-<li>完成 Kernel 中 Netfilter hooks 代码到 VPP hooks 的移植，实现转发逻辑的兼容适配。降低内核模块 Coredump 的影响</li>
+<li>将 Netfilter hooks 转发逻辑适配移植至 VPP plugin 框架</li>
 </ul>
-<h5>二层</h5>
+<p><strong>技术方案</strong>：</p>
 <ul>
-<li>支持 VLAN 及 QinQ 协议解析，完善二层网络协议适配能力。</li>
-<li>实现 VPP 与 Suricata 的零拷贝通道，替代原有 pf_ring 实现，大幅提升数据传输效率。</li>
+<li>二层：实现基于VPP接口的 VLAN / QinQ 协议解析与处理</li>
+<li>三层：实现流表维护与 hook 点暴露、流量统计与 DDOS 限速维护</li>
+<li>四层：实现旁路阻断（TCP reset / UDP 端口不可达）、TCP 报文定制篡改、基于 UDP/ICMP/TCP 欺骗的 NMAP 反测绘</li>
 </ul>
-<h5>三层</h5>
+<p><strong>效果</strong>：</p>
 <ul>
-<li>负责基于三层协议的流表维护，为上层模块提供稳定hook点；保障网络流量转发与管控。</li>
-<li>维护流量统计与流量限速功能，减少后端服务器被恶意 DDOS 导致的崩溃。</li>
-<li>负责 VPP 环境下代理功能的实现与维护，涵盖 NAT、virtio tap ↔ kernel ↔ nginx 链路搭建与优化。</li>
-<li>维护内核层代理功能，基于 tproxy + iptables（适用于二层透明桥）/ TC eBPF Tproxy 实现高效代理转发。</li>
+<li>用户态 coredump 便于快速定位根因，排查效率相比内核崩溃显著提升。</li>
+<li>coredump 影响范围从内核级崩溃（整机重启）缩小为用户态进程重启，故障恢复时间从小时级降至分秒级</li>
+<li>限速功能有效降低后端服务器因 DDOS 导致的崩溃频率</li>
 </ul>
-<h5>四层</h5>
+<h3>VPP 与 Suricata 零拷贝数据通道</h3>
+<p><strong>背景</strong>：原有 VPP 与 Suricata 入侵检测引擎间的数据通道基于 pf_ring，存在额外的内存拷贝开销，制约检测吞吐。</p>
+<p><strong>目标</strong>：实现 VPP 到 Suricata 的零拷贝内存通道，消除数据传输瓶颈。</p>
+<p><strong>技术方案</strong>：基于 VPP 共享内存机制，设计零拷贝通道替代 kernel + pf_ring，Suricata 直接读取 VPP 内存中的数据包。</p>
+<p><strong>效果</strong>：消除数据通路上的内存拷贝操作，降低了 CPU 开销，提高了检测吞吐。</p>
+<h3>透明代理转发实现</h3>
+<p><strong>背景</strong>：安全产品需要在不改变客户端配置的前提下，对特定流量进行代理转发。</p>
+<p><strong>目标</strong>：实现内核态与用户态两套透明代理方案，适配二层桥接和三层路由两种网络拓扑。</p>
+<p><strong>技术方案</strong>：</p>
 <ul>
-<li>实现旁路阻断功能，支持 TCP reset、UDP 端口不可达等阻断策略。</li>
-<li>开发有限的 TCP 报文篡改功能，满足特定场景下的报文定制需求。</li>
-<li>实现反测绘功能，通过 UDP / ICMP / TCP 欺骗机制，规避 NMAP 扫描检测。</li>
+<li>用户态：基于 VPP + 基于流表的 NAT + virtio tap ↔ kernel ↔ nginx 链路实现代理</li>
+<li>内核态：基于 tproxy + ebtables + iptables，TC eBPF tproxy（仅做了调研）</li>
 </ul>
-<h2>Future Plan</h2>
-<p>针对 Suricata 协议处理场景多、边界案例多导致的 coredump 概率较高的问题，调研并推进 XDP + VPP + Suricata 的内核旁路流量方案，避免 Suricata 段错误后写坏 VPP 共享内存，保障流量正常传输。</p>
-<h2>Open Source Contributions</h2>
+<p><strong>效果</strong>：两套方案覆盖不同部署场景，实现客户端无感知的流量代理。</p>
+<h3>网络配置管理模块开发与维护</h3>
+<p><strong>背景</strong>：安全产品同时存在 VPP 用户态与内核态两套转发面，网络配置（接口、路由、策略等）方式差异大，运维需要分别操作两套体系，效率低且易出错。</p>
+<p><strong>目标</strong>：实现一套统一的配置下发管理模块，提供后端管理逻辑与命令行操作入口。</p>
+<p><strong>技术方案</strong>：</p>
 <ul>
-<li>
-<p>基于 AI 辅助编码，参与 util-linux 项目开发：<a href="https://git.kernel.org/pub/scm/utils/util-linux/util-linux.git/log/?qt=author&amp;q=WanBingjiang" target="_blank" rel="noopener">https://git.kernel.org/pub/scm/utils/util-linux/util-linux.git/log/?qt=author&amp;q=WanBingjiang</a></p>
-</li>
-<li>
-<p>VPP、XDP 项目代码提交:</p>
-<ul>
-<li><a href="https://gerrit.fd.io/r/q/author:614699596%2540qq.com" target="_blank" rel="noopener">https://gerrit.fd.io/r/q/author:614699596%2540qq.com</a></li>
-<li><a href="https://github.com/xdp-project/xdp-tutorial/commits?author=echoechoin" target="_blank" rel="noopener">https://github.com/xdp-project/xdp-tutorial/commits?author=echoechoin</a></li>
+<li>后端：基于 Python 实现配置解析、校验与下发逻辑</li>
+<li>CLI：基于 Python 实现命令行管理工具，覆盖配置查询、修改、回滚等日常操作</li>
 </ul>
-</li>
-<li>
-<p>调研与实现 VPP 相关插件，项目地址：<a href="https://github.com/echoechoin/vpp-plugins" target="_blank" rel="noopener">https://github.com/echoechoin/vpp-plugins</a>，支持 CPU 负载模拟、流表追踪、链路状态监控等功能。</p>
-</li>
+<p><strong>效果</strong>：运维人员无需感知底层是 VPP 还是内核转发面，一套命令即可完成两套体系的网络配置，减少重复操作，降低配置出错概率。</p>
+<h3>XDP + VPP + Suricata 高可用旁路方案调研</h3>
+<p><strong>背景</strong>：Suricata 协议解析场景复杂、边界案例多，coredump 概率较高。当前 Suricata 挂死后，VPP 侧流量转发也会异常，影响业务连续性。</p>
+<p><strong>目标</strong>：当 Suricata 异常时，保障基础流量转发不中断，Suricata 恢复后自动切回完整检测链路。</p>
+<p><strong>技术方案</strong>：基于 XDP (AF-XDP) 实现故障旁路机制——正常路径下流量经 XDP 分发至 VPP + Suricata 进行检测转发；当检测到 Suricata 挂死时，XDP 直接将流量旁路到内核协议栈，保底转发；待 VPP 与 Suricata 重启恢复后，XDP 重新将流量切回 VPP 路径。</p>
+<p><strong>效果</strong>：完成方案调研与技术验证，性能测试满足要求。Suricata 故障时基础转发能力不丢失。由于国产网卡对 AF-XDP 适配较少，目前尚未投入生产环境，待国产网卡驱动完善后即可落地。</p>
+<h2>开源贡献</h2>
+<ul>
+<li>util-linux：基于 AI 辅助编码参与 util-linux 项目开发
+<a href="https://git.kernel.org/pub/scm/utils/util-linux/util-linux.git/log/?qt=author&amp;q=WanBingjiang" target="_blank" rel="noopener">https://git.kernel.org/pub/scm/utils/util-linux/util-linux.git/log/?qt=author&amp;q=WanBingjiang</a></li>
+<li>VPP / XDP 项目代码提交：
+<a href="https://gerrit.fd.io/r/q/author:614699596%2540qq.com" target="_blank" rel="noopener">https://gerrit.fd.io/r/q/author:614699596%2540qq.com</a>
+<a href="https://github.com/xdp-project/xdp-tutorial/commits?author=echoechoin" target="_blank" rel="noopener">https://github.com/xdp-project/xdp-tutorial/commits?author=echoechoin</a></li>
+<li>vpp-plugins：VPP 插件集合，支持 CPU 负载模拟、流表追踪、链路状态监控等功能
+<a href="https://github.com/echoechoin/vpp-plugins" target="_blank" rel="noopener">https://github.com/echoechoin/vpp-plugins</a></li>
 </ul>
 
   </main>
